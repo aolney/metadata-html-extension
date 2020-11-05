@@ -22,7 +22,18 @@ let injectHtml( notebook : NotebookPanel ) =
   let cell = cells.[i]
   if cell.model.``type`` = JupyterlabCoreutils.Nbformat.Nbformat.CellType.Markdown then
     let markdownCell = cell :?> JupyterlabCells.Widget.MarkdownCell
-    markdownCell.model.trusted <- true
+    // markdownCell.model.trusted <- true
+    let jsonOption = markdownCell.model.metadata.get("html")
+    if jsonOption.IsSome then
+      //some navigation in the DOM to align our HTML with the rendered markdown; likely fragile to future changes
+      let inputWrapper = markdownCell.node.children.[1] :?> HTMLElement
+      let inputArea = inputWrapper.children.[1] :?> HTMLElement
+      //check for previous injection to avoid duplication
+      let lastChildElement = inputArea.lastChild :?> HTMLElement
+      if not <| lastChildElement.classList.contains("metadata-html") then
+        let target = inputArea.children.[2] :?> HTMLElement
+        target.insertAdjacentHTML("beforeend",jsonOption.Value.ToString())
+
 
 /// On every notebook change, register a promise to display when the notebook is revealed.
 /// Cells are not accessible at this time point, so we have to catch this promise
