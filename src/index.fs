@@ -28,10 +28,10 @@ let injectHtml( notebook : NotebookPanel ) =
       //some navigation in the DOM to align our HTML with the rendered markdown; likely fragile to future changes
       let inputWrapper = markdownCell.node.children.[1] :?> HTMLElement
       let inputArea = inputWrapper.children.[1] :?> HTMLElement
-      //check for previous injection to avoid duplication
-      let lastChildElement = inputArea.lastChild :?> HTMLElement
-      if not <| lastChildElement.classList.contains("metadata-html") then
-        let target = inputArea.children.[2] :?> HTMLElement
+      let target = inputArea.children.[2] :?> HTMLElement
+      //check for previous injection to avoid duplication; the last attribute would have a classlist that includes "metadata-html"
+      let lastChildElement = target.lastChild :?> HTMLElement //inputArea.lastChild :?> HTMLElement
+      if lastChildElement.classList = null ||  not <| lastChildElement.classList.contains("metadata-html") then
         target.insertAdjacentHTML("beforeend",jsonOption.Value.ToString())
 
 

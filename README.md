@@ -2,6 +2,16 @@
 
 A [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/) extension with [Fable](https://fable.io/) tooling that uses cell metadata to define html that should be injected into markdown cells.
 
+Example metadata:
+
+```javascript
+{
+    "html": "<iframe class='metadata-html' width='560' height='315' src='https://www.youtube.com/embed/nBrKsT1IvIM' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+}
+```
+
+`class='metadata-html'` will prevent duplicate html injection if switching between notebooks.
+
 **NOTE: This plugin requires jupyterlab <= 1.2.6, so if you have a higher version (e.g. 2.X) you will need to execute `conda install jupyterlab=1.2.6` or similar for `pip`**
 
 
