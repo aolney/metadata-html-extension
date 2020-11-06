@@ -2,6 +2,14 @@
 
 A [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/) extension with [Fable](https://fable.io/) tooling that uses cell metadata to define html that should be injected into markdown cells.
 
+This approach overcomes the limitations of JupyterLab markdown cells for certain types of html, such as iframes, that appear to be stripped/sanitized based on the JupyterLab security model.
+
+Using this extension therefore increases the likelihood that an attacker may use a notebook to execute arbitrary code on your computer.
+
+This extension is meant for research purposes only and is not meant for general usage. 
+
+Obviously, notebooks with html in the metadata will not render properly without this extension. 
+
 Example metadata:
 
 ```javascript
