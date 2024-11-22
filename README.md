@@ -1,5 +1,8 @@
 # metadata-html-extension
 
+> [!WARNING]
+> The repository is for JLab 1.2x and has been superceded by [another repo for JLab 4x](https://github.com/aolney/jupyterlab-metadata-html-extension)
+
 A [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/) extension with [Fable](https://fable.io/) tooling that uses cell metadata to define html that should be injected into markdown cells.
 
 This approach overcomes the limitations of JupyterLab markdown cells for certain types of html, such as iframes, that appear to be stripped/sanitized based on the JupyterLab security model.
